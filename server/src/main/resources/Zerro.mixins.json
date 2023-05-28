@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "xyz.bluspring.zerro.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "NetLoginHandlerAccessor",
+    "NetworkManagerAccessor",
+    "ThreadLoginVerifierMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

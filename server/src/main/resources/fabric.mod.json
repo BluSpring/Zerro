@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "zerro",
+  "version": "${version}",
+  "name": "Zerro",
+  "description": "Minecraft authentication system for legacy versions",
+  "authors": [
+    "BluSpring"
+  ],
+  "contact": {
+    "repo": "https://github.com/BluSpring/Zerro"
+  },
+  "license": "MIT",
+  "icon": "assets/zerro/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "xyz.bluspring.zerro.Zerro"
+    ]
+  },
+  "mixins": [
+    "Zerro.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "minecraft": "1.0.0-beta.2.1",
+    "fabric-language-kotlin": ">=1.9.4+kotlin.1.8.21"
+  }
+}

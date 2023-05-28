@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "xyz.bluspring.zerro.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "MinecraftMixin",
+    "NetClientHandlerMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
