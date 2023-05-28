@@ -21,7 +21,7 @@ subprojects {
 
     dependencies {
         include(implementation('com.google.code.gson:gson:2.10.1'))
-        shadow(implementation("com.mojang:authlib:3.11.49"))
+        shadow(implementation("com.mojang:authlib:2.1.28"))
     }
 
     compileKotlin {
