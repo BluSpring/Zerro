@@ -3,9 +3,11 @@ package xyz.bluspring.zerro.mixin;
 import net.minecraft.client.Minecraft;
 import net.minecraft.src.*;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.gen.Accessor;
 import org.spongepowered.asm.mixin.gen.Invoker;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import xyz.bluspring.zerro.Zerro;
 import xyz.bluspring.zerro.client.ZerroClient;
 
@@ -21,8 +23,10 @@ public abstract class NetClientHandlerMixin {
      * @author BluSpring
      * @reason Use AuthLib's Join Server system instead
      */
-    @Overwrite
-    public void handleHandshake(Packet2Handshake handshakePacket) {
+    @Inject(method = "handleHandshake", at = @At("HEAD"), cancellable = true)
+    public void handleHandshake(Packet2Handshake handshakePacket, CallbackInfo ci) {
+        ci.cancel();
+
         Zerro zerro = Zerro.Companion.getInstance();
         ZerroClient zerroClient = ZerroClient.Companion.getInstance();
         Minecraft minecraft = ZerroClient.getMinecraft();

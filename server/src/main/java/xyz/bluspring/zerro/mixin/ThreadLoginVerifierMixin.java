@@ -4,8 +4,10 @@ import com.mojang.authlib.GameProfile;
 import net.minecraft.src.NetLoginHandler;
 import net.minecraft.src.Packet1Login;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.gen.Accessor;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import xyz.bluspring.zerro.Zerro;
 
 import java.net.InetAddress;
@@ -22,8 +24,10 @@ public abstract class ThreadLoginVerifierMixin {
      * @author BluSpring
      * @reason Use AuthLib's Join Server system instead
      */
-    @Overwrite
-    public void run() {
+    @Inject(method = "run", at = @At("HEAD"), cancellable = true)
+    public void run(CallbackInfo ci) {
+        ci.cancel();
+
         try {
             String serverId = ((NetLoginHandlerAccessor) this.getLoginHandler()).getServerId();
             // apparently MC doesn't even bother having the UUID??? so that's interesting
