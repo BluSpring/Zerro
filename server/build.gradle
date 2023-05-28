@@ -1,8 +1,6 @@
 plugins {
     id 'common-loom' version '1.1-SNAPSHOT'
-    id 'org.jetbrains.kotlin.jvm' version '1.8.21'
     id 'maven-publish'
-    id 'com.github.johnrengelman.shadow' version "7.1.1"
 }
 
 version = project.mod_version + "+server"
@@ -35,7 +33,6 @@ dependencies {
 
     modImplementation "net.fabricmc:fabric-loader:${loader_version}"
     modImplementation("net.fabricmc:fabric-language-kotlin:1.9.4+kotlin.1.8.21")
-    implementation(include('com.google.code.gson:gson:2.10.1'))
 }
 
 processResources {
