@@ -4,11 +4,12 @@ import com.google.gson.JsonParser
 import com.mojang.authlib.minecraft.MinecraftSessionService
 import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService
 import net.fabricmc.api.ModInitializer
+import java.net.Proxy
 import java.net.URL
 import java.util.*
 
 class Zerro : ModInitializer {
-    val authService = YggdrasilAuthenticationService(null)
+    val authService = YggdrasilAuthenticationService(Proxy.NO_PROXY)
     val sessionService: MinecraftSessionService = authService.createMinecraftSessionService()
 
     override fun onInitialize() {
