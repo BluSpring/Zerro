@@ -10,6 +10,9 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 public class MinecraftAppletMixin {
     @Redirect(method = "init", at = @At(value = "FIELD", target = "Lnet/minecraft/src/Session;sessionId:Ljava/lang/String;"))
     public String avoidPrintingSessionId(Session instance) {
-        return "(session ID omitted for security reasons)";
+        if (System.getProperty("zerro.omitId", "true").equalsIgnoreCase("true"))
+            return "(session ID omitted for security reasons)";
+        else
+            return instance.sessionId;
     }
 }
