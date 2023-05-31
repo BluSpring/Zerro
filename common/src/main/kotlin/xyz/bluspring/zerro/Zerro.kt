@@ -4,9 +4,11 @@ import com.google.gson.JsonParser
 import com.mojang.authlib.minecraft.MinecraftSessionService
 import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService
 import net.fabricmc.api.ModInitializer
+import java.math.BigInteger
 import java.net.Proxy
 import java.net.URL
 import java.util.*
+
 
 class Zerro : ModInitializer {
     val authService = YggdrasilAuthenticationService(Proxy.NO_PROXY)
@@ -21,11 +23,19 @@ class Zerro : ModInitializer {
             val encoded = URL("https://api.mojang.com/users/profiles/minecraft/$username").readText()
             val json = JsonParser.parseString(encoded).asJsonObject
 
-            UUID.fromString(json.get("id").asString.replaceFirst("(\\p{XDigit}{8})(\\p{XDigit}{4})(\\p{XDigit}{4})(\\p{XDigit}{4})(\\p{XDigit}+)", "$1-$2-$3-$4-$5"))
+            convertUuid(json.get("id").asString)
         } catch (e: Exception) {
             e.printStackTrace()
             null
         }
+    }
+
+    private fun convertUuid(string: String): UUID {
+        val withoutDashes = string.replace("-".toRegex(), "")
+        val bi1 = BigInteger(withoutDashes.substring(0, 16), 16)
+        val bi2 = BigInteger(withoutDashes.substring(16, 32), 16)
+
+        return UUID(bi1.toLong(), bi2.toLong())
     }
 
     companion object {
