@@ -4,6 +4,7 @@
   "package": "xyz.bluspring.zerro.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "MinecraftAppletMixin",
     "MinecraftMixin",
     "NetClientHandlerMixin"
   ],
