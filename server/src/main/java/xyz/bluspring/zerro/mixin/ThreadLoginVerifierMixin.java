@@ -10,8 +10,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import xyz.bluspring.zerro.Zerro;
 
-import java.net.InetAddress;
-
 @Mixin(targets = "net.minecraft.src.ThreadLoginVerifier")
 public abstract class ThreadLoginVerifierMixin {
     @Accessor
@@ -33,9 +31,7 @@ public abstract class ThreadLoginVerifierMixin {
             // apparently MC doesn't even bother having the UUID??? so that's interesting
             GameProfile profile = new GameProfile(null, this.getLoginPacket().username);
 
-            InetAddress address = ((NetworkManagerAccessor) this.getLoginHandler().netManager).getNetworkSocket().getInetAddress();
-
-            GameProfile authedProfile = Zerro.Companion.getInstance().getSessionService().hasJoinedServer(profile, serverId, address);
+            GameProfile authedProfile = Zerro.Companion.getInstance().getSessionService().hasJoinedServer(profile, serverId, null);
 
             if (authedProfile == null)
                 throw new IllegalStateException("Player has not logged in!");
