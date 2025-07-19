@@ -33,11 +33,11 @@ public abstract class NetClientHandlerMixin {
 
         if (handshakePacket.username.equals("-")) {
             // Offline mode
-            this.invokeAddToSendQueue(new Packet1Login(minecraft.session.username, "Password", 8));
+            this.invokeAddToSendQueue(new Packet1Login(minecraft.session.username, 22));
         } else {
             try {
                 zerro.getSessionService().joinServer(zerroClient.getProfile(), minecraft.session.sessionId, handshakePacket.username);
-                this.invokeAddToSendQueue(new Packet1Login(minecraft.session.username, "Password", 8));
+                this.invokeAddToSendQueue(new Packet1Login(minecraft.session.username, 22));
             } catch (Exception e) {
                 e.printStackTrace();
                 this.getNetManager().networkShutdown("disconnect.genericReason", "Internal client error: " + e.toString());

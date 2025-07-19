@@ -10,9 +10,6 @@ public interface NetLoginHandlerAccessor {
     @Accessor
     String getServerId();
 
-    @Accessor("field_9004_h")
-    Packet1Login getLoginPacket();
-
-    @Accessor("field_9004_h")
+    @Accessor("packet1login")
     void setLoginPacket(Packet1Login loginPacket);
 }
