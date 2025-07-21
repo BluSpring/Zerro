@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "NetLoginHandlerAccessor",
+    "NetworkAcceptThreadMixin",
     "NetworkManagerAccessor",
     "ThreadLoginVerifierMixin"
   ],
